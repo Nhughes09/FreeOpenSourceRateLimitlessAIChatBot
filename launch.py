@@ -1,3 +1,4 @@
+
 import logging
 from playwright.sync_api import sync_playwright, TimeoutError, Error
 import time
@@ -14,11 +15,17 @@ def run(playwright):
 
     # Navigate to the chat page
     logging.info("Navigating to https://huggingface.co/chat/")
-    page.goto("https://huggingface.co/chat/")
-
+    page.goto("https://hf.co/chat/assistant/66017fca58d60bd7d5c5c26c")
+    page.click("#app > div.grid.h-full.w-screen.grid-cols-1.grid-rows-\[auto\,1fr\].overflow-hidden.text-smd.md\:grid-cols-\[280px\,1fr\].transition-\[300ms\].\[transition-property\:grid-template-columns\].dark\:text-gray-300.md\:grid-rows-\[1fr\] > div > dialog > form > button")
     # Wait for the page to load completely
+
+    page.click('summary:has-text("Tools")')
+    page.click("#app > div.grid.h-full.w-screen.grid-cols-1.grid-rows-\[auto\,1fr\].overflow-hidden.text-smd.md\:grid-cols-\[280px\,1fr\].transition-\[300ms\].\[transition-property\:grid-template-columns\].dark\:text-gray-300.md\:grid-rows-\[1fr\] > div > div.dark\:via-gray-80.pointer-events-none.absolute.inset-x-0.bottom-0.z-0.mx-auto.flex.w-full.max-w-3xl.flex-col.items-center.justify-center.bg-gradient-to-t.from-white.via-white\/80.to-white\/0.px-3\.5.py-4.dark\:border-gray-800.dark\:from-gray-900.dark\:to-gray-900\/0.max-md\:border-t.max-md\:bg-white.max-md\:dark\:bg-gray-900.sm\:px-5.md\:py-8.xl\:max-w-4xl.\[\&\>\*\]\:pointer-events-auto > div > div.flex.w-full.pb-3 > details > div > div > div.col-span-2.flex.items-center.gap-1\.5.text-sm.text-gray-500 > button")
     logging.info("Waiting for the page to load completely...")
+
+    page.click("#app > div.grid.h-full.w-screen.grid-cols-1.grid-rows-\[auto\,1fr\].overflow-hidden.text-smd.md\:grid-cols-\[280px\,1fr\].transition-\[300ms\].\[transition-property\:grid-template-columns\].dark\:text-gray-300.md\:grid-rows-\[1fr\] > div > div.scrollbar-custom.mr-1.h-full.overflow-y-auto > div")
     page.wait_for_load_state('networkidle')
+    
 
     # Wait for the chat input field to be visible with a longer timeout
     logging.info("Waiting for the chat input field to be visible...")
